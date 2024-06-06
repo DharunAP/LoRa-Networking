@@ -406,7 +406,7 @@ SCK               -          D22
 ![Untitled (7)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/b2e04d3c-333a-4290-8e71-6ab23f275f7b)
 
 
-<br>
+
 
 <br>
 
