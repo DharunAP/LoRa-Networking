@@ -457,12 +457,19 @@ TX                -          D13 / D17
 <br>
 <br><br>
 <br>
+  
+<br>
+  
 # Mesh Network - Rhmesh
 
 https://github.com/PaulStoffregen/RadioHead/blob/master/RHMesh.h
 
 The RHMesh library is part of the RadioHead suite developed by Mike McCauley. It extends the RHRouter class to support mesh networking, enabling multi-hop routing and automatic route discovery in dynamic network topologies. This makes RHMesh particularly suitable for applications where nodes can move or change status, ensuring reliable communication even in fluid environments.
-
+  
+<br>
+    
+<br>
+  
 ## Features
 
 1. **Mesh Networking:** Supports multi-hop communication across a network of nodes.
@@ -473,25 +480,39 @@ The RHMesh library is part of the RadioHead suite developed by Mike McCauley. It
 6. **Message Optimisation:** Intermediate nodes cannot decode messages; only destination nodes can unwrap them, ensuring end-to-end encryption and security.
 7. **Auto Node-Addition:** New node is automatically added to the RouteTable once its initiated.
 8. BroadCast message: Each node can able send a single message to all other node in the route table by using NODE_ID : 255 (or)RH_BROADCAST_ADDRESS.
-
+  
+<br>
+    
+<br>
+  
 ## Protocol Overview
-
+  
+<br>
+  
 ### Message Types
 
 - **RH_MESH_MESSAGE_TYPE_APPLICATION:** Used for application layer messages.
 - **RH_MESH_MESSAGE_TYPE_ROUTE_DISCOVERY_REQUEST:** Broadcasted to discover routes to a destination node.
 - **RH_MESH_MESSAGE_TYPE_ROUTE_DISCOVERY_RESPONSE:** Unicast response containing the discovered route.
 - **RH_MESH_MESSAGE_TYPE_ROUTE_FAILURE:** Notifies nodes of a failure in the established route.
-
+  
+<br>
+  
 ### Route Status Code:
 
 - 0 ⇒ RH_ROUTER_ERROR_NONE
 - 1 ⇒RH_ROUTER_ERROR_NO_ROUTE
 - 2 ⇒RH_ROUTER_ERROR_TIMEOUT
 - Not Recognised ⇒ General failure
-
+  
+<br>
+    
+<br>
+  
 ## Detailed Functionality
-
+  
+<br>
+  
 ### Initialization and Basic Operation
 
 When an RHMesh node starts, it doesn't have knowledge of any routes. It relies on automatic route discovery to establish paths to other nodes.
@@ -504,7 +525,9 @@ RHMesh(RHGenericDriver& driver, uint8_t thisAddress = 0);
 ```
 
 - Initializes the mesh node with a given driver and node address.
-
+  
+<br>
+  
 ### Route Discovery
 
 1. **Sending a Message**: When a node sends a message using `sendtoWait`, it first checks if a route to the destination exists in its routing table.
@@ -512,7 +535,11 @@ RHMesh(RHGenericDriver& driver, uint8_t thisAddress = 0);
 3. **Intermediate Nodes**: Nodes receiving the request check if the destination is themselves. If not, they rebroadcast the request, adding themselves to the list of visited nodes.
 4. **Destination Node**: When the destination node receives the request, it sends a unicast `MeshRouteDiscoveryMessage` with type `RH_MESH_MESSAGE_TYPE_ROUTE_DISCOVERY_RESPONSE` back to the origin.
 5. **Route Formation**: Intermediate nodes use the response to update their routing tables with the route back to the origin and other nodes on the path.
-
+  
+<br>
+    
+<br>
+  
 ### Route Failure Handling
 
 When a node cannot deliver a message to the next hop:
@@ -523,7 +550,15 @@ When a node cannot deliver a message to the next hop:
     - Intermediate nodes and the originator delete the failed route from their routing tables.
 3. **Reattempt:**
     - If a message needs to be sent again, a new route discovery process is initiated.
+  
+<br>
+    
+<br>
+  
 ## Class Structure and Methods
+  
+<br>
+    
 
 ### Public Methods
 
@@ -562,7 +597,9 @@ When a node cannot deliver a message to the next hop:
     
     - **Parameters:**
         - `timeout`: Maximum time to wait in milliseconds.
-
+  
+<br>
+  
 ### Protected Methods
 
 - **peekAtMessage:**
@@ -608,13 +645,22 @@ When a node cannot deliver a message to the next hop:
     - **Parameters:**
         - `address`: Address being tested.
         - `addresslen`: Length of the address.
-
+  
+<br>
+  
 ### Private Members
 
 - **_tmpMessage:**
     - A temporary message buffer for internal use.
+  
+<br>
+    
+<br>
+  
 ## Example Usage
-
+  
+<br>
+  
 ### Basic Initialization
 
 ```cpp
@@ -639,7 +685,9 @@ void loop() {
 }
 
 ```
-
+  
+<br>
+  
 ### Receiving Messages
 
 ```cpp
@@ -661,11 +709,34 @@ void loop() {
 The RHMesh library provides a robust framework for implementing mesh networks with dynamic routing and reliable communication. Its design accommodates the constraints of microcontroller environments while offering essential features for complex networking scenarios. By leveraging automatic route discovery and handling route failures, RHMesh ensures resilient and flexible wireless communication.
 
 ---
-
+  
+<br>
+    
+<br>
+    
+<br>
+    
+<br>
+    
+<br>
+    
+  
+<br>
+  
 # Mesh Nodes
-
+  
+<br>
+    
+<br>
+    
+<br>
+  
 ## Central Station:
-
+  
+<br>
+    
+<br>
+  
 ## Specifications:
 
 **Components:**
@@ -1001,9 +1072,16 @@ void handleSendError(uint8_t result) {
   }
 }
 ```
-
+  
+<br>
+    
+<br>
+  
 ## Explanation:
-
+  
+<br>
+   
+   
 ### Libraries and Global Constants
 
 1. *Libraries*: The code includes several libraries for different functionalities:
@@ -1024,7 +1102,9 @@ void handleSendError(uint8_t result) {
     - Defines chip select, reset, and interrupt pins.
     - Assigns a unique node ID to this node within the mesh network.
 5. *FreeRTOS Task Handles*: Task handles for the two FreeRTOS tasks that will run concurrently.
-
+  
+<br>
+   
 ### Setup Function
 
 1. *Serial Communication*: Initializes serial communication at 9600 baud rate for debugging and logging purposes.
@@ -1040,11 +1120,15 @@ void handleSendError(uint8_t result) {
     - Calls a function to print the local time, ensuring synchronization.
 5. *FreeRTOS Tasks Creation*:
     - Creates two FreeRTOS tasks with different priorities and assigns them to separate cores of the ESP32.
-
+  
+<br>
+   
 ### Loop Function
 
 The loop function is empty as the main functionalities are managed by the two FreeRTOS tasks.
-
+  
+<br>
+   
 ### Task1code Function
 
 1. *Watchdog Timer*:
@@ -1052,7 +1136,9 @@ The loop function is empty as the main functionalities are managed by the two Fr
 2. *Time Synchronization*:
     - Prints the local time every second to keep track of it.
     - The task delays for one second, allowing other tasks to execute.
-
+  
+<br>
+   
 ### Task2code Function
 
 1. *Watchdog Timer*:
@@ -1061,7 +1147,9 @@ The loop function is empty as the main functionalities are managed by the two Fr
     - Creates a buffer for receiving messages.
     - Tries to receive messages with a timeout. If a message is received, it prints and sends the data to the server. If no message is received within the timeout, it logs that no message was received.
     - The task delays for 100 milliseconds, allowing other tasks to run.
-
+  
+<br>
+   
 ### sendDatas Function
 
 1. *WiFi Connection Check*:
@@ -1071,7 +1159,9 @@ The loop function is empty as the main functionalities are managed by the two Fr
     - Logs the response code and response body for verification.
 3. *Error Handling*:
     - If the WiFi connection is lost, the function attempts to reconnect.
-
+  
+<br>
+   
 ### printLocalTime Function
 
 1. *Time Information*:
@@ -1084,7 +1174,9 @@ The loop function is empty as the main functionalities are managed by the two Fr
 4. *Message Sending*:
     - Sends the prepared message to the broadcast address and logs the result.
     - If the send operation fails, handles the error and retries after a delay.
-
+  
+<br>
+   
 ### Key Concepts and Functionalities
 
 1. *Task Management*: Uses FreeRTOS tasks to handle time synchronization and message handling concurrently, enabling efficient multitasking on the ESP32.
@@ -1092,7 +1184,11 @@ The loop function is empty as the main functionalities are managed by the two Fr
 3. *Time Synchronization*: Synchronizes system time with an NTP server to ensure accurate timekeeping across all nodes.
 4. *WiFi Communication*: Connects to a WiFi network and sends data to a specified server using HTTP POST requests.
 5. *Watchdog Timer*: Prevents tasks from stalling by resetting the system if tasks become unresponsive.
+   
+<br>
+     
 
+ 
 ### Workflow Summary
 
 1. *Setup*:
@@ -1110,9 +1206,21 @@ The loop function is empty as the main functionalities are managed by the two Fr
 The code leverages LoRa for long-range, low-power wireless communication and WiFi for internet connectivity, making it suitable for IoT applications that require reliable communication over large areas.
 
 ---
-
-## Client Node:
-
+  
+<br>
+   
+<br>
+   
+<br>
+   
+<br>
+ 
+# Client Node:
+  
+<br>
+   
+<br>
+ 
 ## Specifications:
 
 **Components:**
@@ -1134,7 +1242,11 @@ The code leverages LoRa for long-range, low-power wireless communication and WiF
 **Location:**
 
 - Present In the flood prone area.
-
+  
+<br>
+   
+<br>
+ 
 ## Code:
 
 ```cpp
@@ -1560,14 +1672,24 @@ void handleVersionCheck() {
 
 //                                                NO specific functions
 ```
-
+    
+<br>
+ 
+<br>
+ 
 ## Explanation:
-
+  
+<br>
+   
+<br>
+ 
 ### **Libraries:**
 
 - **RFM95 and GPS Libraries:** Includes libraries for mesh networking (RHMesh, RH_RF95) and GPS communication (TinyGPS++, SoftwareSerial).
 - **ESP32 Libraries:** Includes libraries for Wi-Fi, HTTP, OTA updates, and ESP32 specific operations (WiFi, HTTPClient, Update, esp_ota_ops, WebServer, Arduino).
-
+  
+<br>
+ 
 ### **Initialization:**
 
 - **Pin Definitions:** Defines the pins used for the RFM95 module (chip select, reset, interrupt), GPS module (RX, TX), and serial monitor.
@@ -1577,7 +1699,9 @@ void handleVersionCheck() {
 - **Wi-Fi Credentials:** Sets Wi-Fi credentials for connection and access point.
 - **Web Server:** Creates a WebServer instance on port 80.
 - **FreeRTOS Tasks:** Task handles for managing FreeRTOS tasks.
-
+  
+<br>
+ 
 ### **Setup Function:**
 
 - **Serial Communication:** Initializes serial communication for debugging and GPS.
@@ -1585,17 +1709,23 @@ void handleVersionCheck() {
 - **Mesh Network Initialization:** Initializes the mesh network manager.
 - **Wi-Fi Access Point:** Starts the Wi-Fi access point and sets up HTTP server routes for handling requests.
 - **FreeRTOS Tasks:** Creates and pins two FreeRTOS tasks (Task1code and Task2code) to specific cores for concurrent execution.
-
+  
+<br>
+ 
 ### **Main Loop:**
 
 - The main loop is empty because the code uses FreeRTOS tasks to handle operations concurrently.
-
+  
+<br>
+ 
 ### **Task1code (Core 0):**
 
 - **GPS Data Handling:** Continuously reads data from the GPS module and serial port, updating the GPS location if new data is available.
 - **Latitude and Longitude Storage:** Stores the updated latitude and longitude values when GPS location is updated.
 - **Task Delay:** Delays the task for a short period to yield control.
-
+  
+<br>
+ 
 ### **Task2code (Core 1):**
 
 - **HTTP Server Handling:** Handles HTTP client requests.
@@ -1605,7 +1735,9 @@ void handleVersionCheck() {
     - **Message Handling:** Processes messages from the central station, updates the time, and GPS data back to the Base station.
     - **Message Forwarding:** Forwards messages to the destination node.
 - **Task Delay:** Delays the task for a short period to yield control.
-
+  
+<br>
+ 
 ### Functions:
 
 **HandleSendError Function:**
@@ -1626,9 +1758,21 @@ void handleVersionCheck() {
 - **handleData:** Handles data endpoint requests, including OTA update initiation and forwarding messages in the mesh network.
 - **handleVersionCheck:** Handles version check endpoint requests and responds with the current firmware version.
 - **handleUpdate:** Handles OTA updates for firmware, if it fails rollbacks to original version through the partitions schemes.
-
-## Base Node:
-
+  
+<br>
+   
+<br>
+   
+<br>
+   
+<br>
+ 
+# Base Node:
+  
+<br>
+   
+<br>
+ 
 ## Specifications:
 
 **Components:**
@@ -1649,6 +1793,11 @@ void handleVersionCheck() {
 **Location:**
 
 - Present In the flood prone area.
+  
+<br>
+<br>
+ 
+## Code:
 
 ```cpp
 
@@ -2050,14 +2199,22 @@ void handleVersionCheck() {
 
 //                                                NO specific functions
 ```
-
+  
+<br>
+ 
+<br>
+ 
 ## Explanation:
-
+  
+<br>
+ 
 ### **Libraries:**
 
 - **RFM95 and BME280 Libraries:** Includes libraries for mesh networking (RHMesh, RH_RF95) and sensor communication (Adafruit BME 280 ,Adafruit Unified Sensor).
 - **ESP32 Libraries:** Includes libraries for Wi-Fi, HTTP, OTA updates, and ESP32 specific operations (WiFi, HTTPClient, Update, esp_ota_ops, WebServer, Arduino).
-
+  
+<br>
+ 
 ### **Initialization:**
 
 - **Pin Definitions:** Defines the pins used for the RFM95 module (chip select, reset, interrupt), GPS module (RX, TX), and serial monitor.
@@ -2067,7 +2224,9 @@ void handleVersionCheck() {
 - **Wi-Fi Credentials:** Sets Wi-Fi credentials for connection and access point.
 - **Web Server:** Creates a WebServer instance on port 80.
 - **FreeRTOS Tasks:** Task handles for managing FreeRTOS tasks.
-
+  
+<br>
+ 
 ### **Setup Function:**
 
 - **Serial Communication:** Initializes serial communication for debugging and GPS.
@@ -2075,23 +2234,31 @@ void handleVersionCheck() {
 - **Mesh Network Initialization:** Initializes the mesh network manager.
 - **Wi-Fi Access Point:** Starts the Wi-Fi access point and sets up HTTP server routes for handling requests.
 - **FreeRTOS Tasks:** Creates and pins two FreeRTOS tasks (Task1code and Task2code) to specific cores for concurrent execution.
-
+  
+<br>
+ 
 ### **Main Loop:**
 
 - The main loop is empty because the code uses FreeRTOS tasks to handle operations concurrently.
-
+  
+<br>
+ 
 ### **Task1code (Core 0):**
 
 - **HTTP Server Handling:** Handles HTTP client requests.
     - **Request Message:** Received requests are converted into message formats and send to the Base Station.
     - **OTA update:** If update request is received it calls the *“handleUpdate”* function*.*
-
+  
+<br>
+ 
 ### **Task2code (Core 1):**
 
 - **Mesh Network Communication:** Receives and processes messages from the mesh network.
     - **Message Handling:** Processes messages from the central station, updates the time, and sensor data back to the Base station.
     - **Message Forwarding:** Forwards messages to the destination node.
-
+  
+<br>
+ 
 ### Functions:
 
 **HandleSendError Function:**
