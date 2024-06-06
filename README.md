@@ -33,7 +33,8 @@
     - SPI Flash up to 16 MB
     - MicroSD Card
 
-### I/O Pins:
+### I/O Pins:![Untitled](https://github.com/DharunAP/LoRa-Networking/assets/123437101/35089891-a858-479b-83e4-bf484e6a9625)
+
 
 - 38 GPIO pins (General Purpose Input/Output)
 - Interfaces for UART, SPI, I2C, I2S, PWM, SDIO, and CAN
