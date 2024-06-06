@@ -231,6 +231,10 @@
 <br>
 
 
+<br>
+
+
+
 - VCC (3.3V) on SX1278 to 3V3 on ESP32
 - GND on SX1278 to GND on ESP32
 - SCK on SX1278 to D18 (HSPI CLK) on ESP32
