@@ -1,6 +1,6 @@
 # Esp32:
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/85f765d7-03f7-493b-8f9d-46a291e36017/d687920c-4e55-4c46-bdaa-872f955b0290/Untitled.png)
+(https://github.com/DharunAP/LoRa-Networking/assets/123437101/35089891-a858-479b-83e4-bf484e6a9625)
 
 # **Specifications:**
 
@@ -33,7 +33,7 @@
     - SPI Flash up to 16 MB
     - MicroSD Card
 
-### I/O Pins:![Untitled](https://github.com/DharunAP/LoRa-Networking/assets/123437101/35089891-a858-479b-83e4-bf484e6a9625)
+### I/O Pins:
 
 
 - 38 GPIO pins (General Purpose Input/Output)
