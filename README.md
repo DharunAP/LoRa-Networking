@@ -304,6 +304,8 @@
 
 <img src="https://github.com/DharunAP/LoRa-Networking/assets/123437101/f6ee9ef8-1dec-4049-b9e6-c1fb182a84a6" height="400px">
 
+<br>
+
 **BMP280**                 **ESP32** 
 
 VCC              -          3.3v
