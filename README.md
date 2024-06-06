@@ -478,7 +478,7 @@ TX                -          D13 / D17
   
 # Mesh Network - Rhmesh
 
-https://github.com/PaulStoffregen/RadioHead/blob/master/RHMesh.h
+https://github.com/PaulStoffregen/RadioHead/blob/master/RHMesh.h 🐱
 
 The RHMesh library is part of the RadioHead suite developed by Mike McCauley. It extends the RHRouter class to support mesh networking, enabling multi-hop routing and automatic route discovery in dynamic network topologies. This makes RHMesh particularly suitable for applications where nodes can move or change status, ensuring reliable communication even in fluid environments.
   
