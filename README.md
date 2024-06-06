@@ -2,6 +2,9 @@
 
 ![Untitled](https://github.com/DharunAP/LoRa-Networking/assets/123437101/b1247f22-10f6-46e1-9ae6-01b87658003b)
 
+<br>
+<br>
+
 # **Specifications:**
 
 
@@ -79,10 +82,17 @@
 - Touch Sensor Inputs
 - Temperature Sensor
 - Hall Effect Sensor
+  
+<br>
+<br>
 
   # **Pin Diagram:**
 ![Untitled (1)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/62f7973f-f47e-41e7-8ed9-0771eb21d187)
 
+<br>
+<br>
+<br>
+<br>
 # ESP32 Arduino IDE Setup:
 
 **Installing the board:**
@@ -113,6 +123,7 @@
 - Select “Partition Schemes”
 - Select “Minimal Spiffs (1.9MB APP with OTA / 190kb with SPIFFS)”
 
+
 **Libraries :**
 
 - Go to tools
@@ -134,14 +145,19 @@
     
     SPI (if not installed)
 
+<br>
+<br>
+<br>
+<br>
 
-<br>
-<br>
+
 # ESP32 - LORA :
 
 ### LoRa (Long Range):
 
 ![Untitled (3)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/3defc863-1a3b-455f-abc5-dfff57fc3c3f)
+
+<br>
 
 ## Specifications:
 
@@ -198,6 +214,8 @@
 
 - Compliance with relevant regulatory standards, such as FCC (Federal Communications Commission) and ETSI (European Telecommunications Standards Institute), depending on the region and module variant
 
+<br>
+
 ## Pin Configurations:
 
 ![Untitled (2)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/2d4098b5-1891-490c-b471-68ea30ac7981)
@@ -211,13 +229,18 @@
 - DIO0 on SX1278 to D26 / D2 on ESP32
 - RST on SXX1278 to D14 on ESP32
 
-
+<br>
+<br>
+<br>
+<br>
 
 # ESP32 - BMP280:
 
 ## BMP280:
 
 ![Untitled (4)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/beee8415-939e-4722-9e22-35355fb6a7b8)
+
+<br>
 
 ## Specifications :
 
@@ -261,6 +284,8 @@
 - Health and Sports Monitoring (e.g., tracking elevation changes during exercise)
 - Industrial Applications (e.g., HVAC systems, environmental monitoring)
 
+<br>
+
 ## Pin Configurations :
 
 ![Untitled (5)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/f6ee9ef8-1dec-4049-b9e6-c1fb182a84a6)
@@ -275,7 +300,10 @@ SDA              -          D21
 
 SCK               -          D22
 
-
+<br>
+<br>
+<br>
+<br>
 
 
 # ESP32 - BME280
@@ -283,7 +311,7 @@ SCK               -          D22
 ## BME 280:
 
 ![Untitled (6)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/42ee76e8-07f0-40bd-8ef5-719db00180d9)
-
+<br>
 ## Specifications:
 
 
@@ -332,8 +360,9 @@ SCK               -          D22
 - **Indoor Environmental Monitoring:** Tracks indoor climate conditions in smart home systems, HVAC (Heating, Ventilation, and Air Conditioning) systems, and other indoor applications.
 - **Health and Wellness:** Monitors environmental conditions in wearable devices and health monitoring systems.
 - **Industrial Applications:** Utilized for environmental monitoring in industrial automation, HVAC systems, and process control
-
-Pin Configuration:
+  
+<br>
+## Pin Configurations:
 
 ![Untitled (7)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/b2e04d3c-333a-4290-8e71-6ab23f275f7b)
 
@@ -349,14 +378,16 @@ SDA              -          D21
 SCK               -          D22
 
 
-
-
+<br>
+<br>
+<br>
+<br>
 
 
 # ESP32 - L89 :
 
 ![Untitled (8)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/06a7e3f7-622e-4006-8ad4-b28e1759ad41)
-
+<br>
 ## Specifications:
 
 **Model:**
@@ -397,7 +428,8 @@ SCK               -          D22
 
 - Support for DGPS and SBAS (WAAS, EGNOS, MSAS, GAGAN).
 - Great anti-jamming performance due to multi-frequency operation.
-
+<br>
+<br>
 ## Pin Configurations:
 
 ![Untitled (9)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/7d56d2e5-7d32-4040-ae67-09ddf02e1278)
