@@ -5,7 +5,6 @@
 <br>
 <br>
 
-<img src="https://github.com/DharunAP/LoRa-Networking/assets/123437101/b1247f22-10f6-46e1-9ae6-01b87658003b" alt="Untitled" width="400" height="300">
 
 # **Specifications:**
 
@@ -162,7 +161,7 @@
 
 ## LoRa (Long Range):
 
-![Untitled (3)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/3defc863-1a3b-455f-abc5-dfff57fc3c3f)
+<img src="https://github.com/DharunAP/LoRa-Networking/assets/123437101/3defc863-1a3b-455f-abc5-dfff57fc3c3f" height="400">
 
 <br>
 
@@ -249,7 +248,7 @@
 
 ## BMP280:
 
-![Untitled (4)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/beee8415-939e-4722-9e22-35355fb6a7b8)
+<img src="https://github.com/DharunAP/LoRa-Networking/assets/123437101/beee8415-939e-4722-9e22-35355fb6a7b8" height="400px">
 
 <br>
 
@@ -299,7 +298,7 @@
 
 ## Pin Configurations :
 
-![Untitled (5)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/f6ee9ef8-1dec-4049-b9e6-c1fb182a84a6)
+<img src="https://github.com/DharunAP/LoRa-Networking/assets/123437101/f6ee9ef8-1dec-4049-b9e6-c1fb182a84a6" height="400px">
 
 **BMP280**                 **ESP32** 
 
@@ -323,7 +322,7 @@ SCK               -          D22
    
 ## BME 280:
 
-![Untitled (6)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/42ee76e8-07f0-40bd-8ef5-719db00180d9)
+<img src="https://github.com/DharunAP/LoRa-Networking/assets/123437101/42ee76e8-07f0-40bd-8ef5-719db00180d9" height="400px">
 
 <br>
 
