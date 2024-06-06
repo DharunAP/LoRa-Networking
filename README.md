@@ -1137,7 +1137,7 @@ The code leverages LoRa for long-range, low-power wireless communication and WiF
 
 ## Code:
 
-```arduino
+```cpp
 // COM -
 //==========================================================================================================
 //                                              L I B R A R I E S                                           |
@@ -1650,7 +1650,7 @@ void handleVersionCheck() {
 
 - Present In the flood prone area.
 
-```arduino
+```cpp
 
 // COM -
 //==========================================================================================================
