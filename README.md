@@ -453,5 +453,73 @@ RX                -          D12 / D16
 TX                -          D13 / D17
 
 
-``` uint8_t sendtoWait(uint8_t* buf, uint8_t len, uint8_t dest, uint8_t flags = 0);```
  
+<br>
+<br><br>
+<br>
+# Mesh Network - Rhmesh
+
+https://github.com/PaulStoffregen/RadioHead/blob/master/RHMesh.h
+
+The RHMesh library is part of the RadioHead suite developed by Mike McCauley. It extends the RHRouter class to support mesh networking, enabling multi-hop routing and automatic route discovery in dynamic network topologies. This makes RHMesh particularly suitable for applications where nodes can move or change status, ensuring reliable communication even in fluid environments.
+
+## Features
+
+1. **Mesh Networking:** Supports multi-hop communication across a network of nodes.
+2. **Automatic Route Discovery:** Dynamically discovers routes to destination nodes when needed.
+3. **Route Failure Handling:** Detects and responds to route failures, ensuring messages can be rerouted as necessary.
+4. **Reliable Hop-to-Hop Delivery:** Uses acknowledgments at each hop to ensure reliable delivery.
+5. **Optimized Memory Usage:** Designed to operate within the limited memory constraints of typical Arduino and similar microcontroller environments.
+6. **Message Optimisation:** Intermediate nodes cannot decode messages; only destination nodes can unwrap them, ensuring end-to-end encryption and security.
+7. **Auto Node-Addition:** New node is automatically added to the RouteTable once its initiated.
+8. BroadCast message: Each node can able send a single message to all other node in the route table by using NODE_ID : 255 (or)RH_BROADCAST_ADDRESS.
+
+## Protocol Overview
+
+### Message Types
+
+- **RH_MESH_MESSAGE_TYPE_APPLICATION:** Used for application layer messages.
+- **RH_MESH_MESSAGE_TYPE_ROUTE_DISCOVERY_REQUEST:** Broadcasted to discover routes to a destination node.
+- **RH_MESH_MESSAGE_TYPE_ROUTE_DISCOVERY_RESPONSE:** Unicast response containing the discovered route.
+- **RH_MESH_MESSAGE_TYPE_ROUTE_FAILURE:** Notifies nodes of a failure in the established route.
+
+### Route Status Code:
+
+- 0 ⇒ RH_ROUTER_ERROR_NONE
+- 1 ⇒RH_ROUTER_ERROR_NO_ROUTE
+- 2 ⇒RH_ROUTER_ERROR_TIMEOUT
+- Not Recognised ⇒ General failure
+
+## Detailed Functionality
+
+### Initialization and Basic Operation
+
+When an RHMesh node starts, it doesn't have knowledge of any routes. It relies on automatic route discovery to establish paths to other nodes.
+
+**Constructor:**
+
+```cpp
+RHMesh(RHGenericDriver& driver, uint8_t thisAddress = 0);
+
+```
+
+- Initializes the mesh node with a given driver and node address.
+
+### Route Discovery
+
+1. **Sending a Message**: When a node sends a message using `sendtoWait`, it first checks if a route to the destination exists in its routing table.
+2. **Route Request**: If no route is known, it broadcasts a `MeshRouteDiscoveryMessage` with type `RH_MESH_MESSAGE_TYPE_ROUTE_DISCOVERY_REQUEST`.
+3. **Intermediate Nodes**: Nodes receiving the request check if the destination is themselves. If not, they rebroadcast the request, adding themselves to the list of visited nodes.
+4. **Destination Node**: When the destination node receives the request, it sends a unicast `MeshRouteDiscoveryMessage` with type `RH_MESH_MESSAGE_TYPE_ROUTE_DISCOVERY_RESPONSE` back to the origin.
+5. **Route Formation**: Intermediate nodes use the response to update their routing tables with the route back to the origin and other nodes on the path.
+
+### Route Failure Handling
+
+When a node cannot deliver a message to the next hop:
+
+1. **Route Failure Message:**
+    - It sends a `MeshRouteFailureMessage` to the originator indicating the failure.
+2. **Route Deletion:**
+    - Intermediate nodes and the originator delete the failed route from their routing tables.
+3. **Reattempt:**
+    - If a message needs to be sent again, a new route discovery process is initiated.
