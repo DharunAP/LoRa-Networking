@@ -4,7 +4,7 @@
 
 <br>
 <br>
-![bme280-header](https://github.com/DharunAP/LoRa-Networking/assets/123437101/5eb265d2-91d7-44bd-be55-a413a2d53e90)
+![image](https://github.com/DharunAP/LoRa-Networking/assets/123437101/d262fe9c-2068-4ba2-ab4e-6600381bb792)
 
 
 # **Specifications:**
