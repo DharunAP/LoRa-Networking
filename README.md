@@ -718,24 +718,20 @@ The RHMesh library provides a robust framework for implementing mesh networks wi
     
 <br>
     
-<br>
-    
-  
-<br>
+
   
 # Mesh Nodes
   
 <br>
     
-<br>
-    
-<br>
+
+
   
 ## Central Station:
   
 <br>
     
-<br>
+
   
 ## Specifications:
 
@@ -755,7 +751,11 @@ The RHMesh library provides a robust framework for implementing mesh networks wi
 **Location:**
 
 - Away from the flood prone area with Wi-Fi Connectivity.
-
+  
+<br>
+    
+<br>
+  
 ## Code:
 
 ```cpp
@@ -1075,11 +1075,10 @@ void handleSendError(uint8_t result) {
   
 <br>
     
-<br>
   
 ## Explanation:
   
-<br>
+
    
    
 ### Libraries and Global Constants
@@ -1211,14 +1210,10 @@ The code leverages LoRa for long-range, low-power wireless communication and WiF
    
 <br>
    
-<br>
-   
-<br>
+
  
 # Client Node:
   
-<br>
-   
 <br>
  
 ## Specifications:
@@ -1244,8 +1239,9 @@ The code leverages LoRa for long-range, low-power wireless communication and WiF
 - Present In the flood prone area.
   
 <br>
-   
+     
 <br>
+  
  
 ## Code:
 
@@ -1679,9 +1675,7 @@ void handleVersionCheck() {
  
 ## Explanation:
   
-<br>
-   
-<br>
+
  
 ### **Libraries:**
 
@@ -1770,8 +1764,7 @@ void handleVersionCheck() {
 # Base Node:
   
 <br>
-   
-<br>
+
  
 ## Specifications:
 
@@ -2206,7 +2199,6 @@ void handleVersionCheck() {
  
 ## Explanation:
   
-<br>
  
 ### **Libraries:**
 
