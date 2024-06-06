@@ -1,4 +1,4 @@
-# Esp32:
+# ESP32:
 
 ![Untitled](https://github.com/DharunAP/LoRa-Networking/assets/123437101/b1247f22-10f6-46e1-9ae6-01b87658003b)
 
@@ -311,6 +311,12 @@
 
 <br>
 
+<br>
+
+
+<br>
+
+
 **BMP280**                 **ESP32** 
 
 VCC              -          3.3v
@@ -385,8 +391,14 @@ SCK               -          D22
 - **Indoor Environmental Monitoring:** Tracks indoor climate conditions in smart home systems, HVAC (Heating, Ventilation, and Air Conditioning) systems, and other indoor applications.
 - **Health and Wellness:** Monitors environmental conditions in wearable devices and health monitoring systems.
 - **Industrial Applications:** Utilized for environmental monitoring in industrial automation, HVAC systems, and process control
-  
+
 <br>
+
+<br>
+
+
+<br>
+
 
 ## Pin Configurations:
 
@@ -468,6 +480,9 @@ SCK               -          D22
 ## Pin Configurations:
 
 ![Untitled (9)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/7d56d2e5-7d32-4040-ae67-09ddf02e1278)
+
+<br>
+
 
 
 **L89**                          **ESP32** 
