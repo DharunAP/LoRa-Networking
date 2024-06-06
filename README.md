@@ -93,6 +93,7 @@
 <br>
 <br>
 <br>
+
 # ESP32 Arduino IDE Setup:
 
 **Installing the board:**
@@ -452,3 +453,5 @@ RX                -          D12 / D16
 TX                -          D13 / D17
 
 
+```  uint8_t sendtoWait(uint8_t* buf, uint8_t len, uint8_t dest, uint8_t flags = 0);
+ ```
