@@ -5,7 +5,7 @@
 <br>
 <br>
 
-![8577431531286238359](https://github.com/DharunAP/LoRa-Networking/assets/123437101/d90c193b-65b0-48b0-af83-7723aa6f3088)
+<img src="https://github.com/DharunAP/LoRa-Networking/assets/123437101/b1247f22-10f6-46e1-9ae6-01b87658003b" alt="Untitled" width="400" height="300">
 
 # **Specifications:**
 
