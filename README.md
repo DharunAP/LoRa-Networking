@@ -154,7 +154,11 @@
 
 # ESP32 - LORA :
 
-### LoRa (Long Range):
+
+<br>
+
+
+## LoRa (Long Range):
 
 ![Untitled (3)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/3defc863-1a3b-455f-abc5-dfff57fc3c3f)
 
@@ -236,6 +240,10 @@
 <br>
 
 # ESP32 - BMP280:
+
+
+<br>
+
 
 ## BMP280:
 
@@ -387,11 +395,17 @@ SCK               -          D22
 <br>
 <br>
 <br>
+
 <br>
 
 
 # ESP32 - L89 :
 
+
+<br>
+
+
+## L89:
 ![Untitled (8)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/06a7e3f7-622e-4006-8ad4-b28e1759ad41)
 
 <br>
