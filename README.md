@@ -311,7 +311,9 @@ SCK               -          D22
 ## BME 280:
 
 ![Untitled (6)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/42ee76e8-07f0-40bd-8ef5-719db00180d9)
+
 <br>
+
 ## Specifications:
 
 
@@ -362,6 +364,7 @@ SCK               -          D22
 - **Industrial Applications:** Utilized for environmental monitoring in industrial automation, HVAC systems, and process control
   
 <br>
+
 ## Pin Configurations:
 
 ![Untitled (7)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/b2e04d3c-333a-4290-8e71-6ab23f275f7b)
@@ -387,7 +390,9 @@ SCK               -          D22
 # ESP32 - L89 :
 
 ![Untitled (8)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/06a7e3f7-622e-4006-8ad4-b28e1759ad41)
+
 <br>
+
 ## Specifications:
 
 **Model:**
@@ -430,6 +435,7 @@ SCK               -          D22
 - Great anti-jamming performance due to multi-frequency operation.
 <br>
 <br>
+
 ## Pin Configurations:
 
 ![Untitled (9)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/7d56d2e5-7d32-4040-ae67-09ddf02e1278)
