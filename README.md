@@ -226,6 +226,10 @@
 
 <img src="https://github.com/DharunAP/LoRa-Networking/assets/123437101/2d4098b5-1891-490c-b471-68ea30ac7981" height="400px">
 
+
+<br>
+
+
 - VCC (3.3V) on SX1278 to 3V3 on ESP32
 - GND on SX1278 to GND on ESP32
 - SCK on SX1278 to D18 (HSPI CLK) on ESP32
@@ -407,7 +411,7 @@ SCK               -          D22
 
 
 ## L89:
-![Untitled (8)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/06a7e3f7-622e-4006-8ad4-b28e1759ad41)
+<img src="https://github.com/DharunAP/LoRa-Networking/assets/123437101/06a7e3f7-622e-4006-8ad4-b28e1759ad41" height="400px">
 
 <br>
 
