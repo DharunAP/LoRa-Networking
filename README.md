@@ -4,8 +4,8 @@
 
 <br>
 <br>
-![image](https://github.com/DharunAP/LoRa-Networking/assets/123437101/d262fe9c-2068-4ba2-ab4e-6600381bb792)
 
+![8577431531286238359](https://github.com/DharunAP/LoRa-Networking/assets/123437101/d90c193b-65b0-48b0-af83-7723aa6f3088)
 
 # **Specifications:**
 
