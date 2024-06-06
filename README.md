@@ -309,6 +309,8 @@ SCK               -          D22
 
 # ESP32 - BME280
 
+<br>
+   
 ## BME 280:
 
 ![Untitled (6)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/42ee76e8-07f0-40bd-8ef5-719db00180d9)
@@ -466,9 +468,6 @@ https://github.com/PaulStoffregen/RadioHead/blob/master/RHMesh.h
 
 The RHMesh library is part of the RadioHead suite developed by Mike McCauley. It extends the RHRouter class to support mesh networking, enabling multi-hop routing and automatic route discovery in dynamic network topologies. This makes RHMesh particularly suitable for applications where nodes can move or change status, ensuring reliable communication even in fluid environments.
   
-<br>
-    
-<br>
   
 ## Features
 
@@ -482,9 +481,7 @@ The RHMesh library is part of the RadioHead suite developed by Mike McCauley. It
 8. BroadCast message: Each node can able send a single message to all other node in the route table by using NODE_ID : 255 (or)RH_BROADCAST_ADDRESS.
   
 <br>
-    
-<br>
-  
+
 ## Protocol Overview
   
 <br>
@@ -496,7 +493,7 @@ The RHMesh library is part of the RadioHead suite developed by Mike McCauley. It
 - **RH_MESH_MESSAGE_TYPE_ROUTE_DISCOVERY_RESPONSE:** Unicast response containing the discovered route.
 - **RH_MESH_MESSAGE_TYPE_ROUTE_FAILURE:** Notifies nodes of a failure in the established route.
   
-<br>
+
   
 ### Route Status Code:
 
@@ -538,7 +535,6 @@ RHMesh(RHGenericDriver& driver, uint8_t thisAddress = 0);
   
 <br>
     
-<br>
   
 ### Route Failure Handling
 
@@ -708,31 +704,22 @@ void loop() {
 
 The RHMesh library provides a robust framework for implementing mesh networks with dynamic routing and reliable communication. Its design accommodates the constraints of microcontroller environments while offering essential features for complex networking scenarios. By leveraging automatic route discovery and handling route failures, RHMesh ensures resilient and flexible wireless communication.
 
+
+
+<br>
 ---
-  
+
 <br>
     
-<br>
-    
-<br>
-    
-<br>
-    
+
 
   
 # Mesh Nodes
   
-<br>
-    
-
-
   
 ## Central Station:
   
-<br>
-    
 
-  
 ## Specifications:
 
 **Components:**
