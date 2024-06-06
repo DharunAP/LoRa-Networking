@@ -247,7 +247,7 @@
 
 ## BMP280:
 
-![Untitled (4)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/beee8415-939e-4722-9e22-35355fb6a7b8)
+<img src ="![Untitled (4)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/beee8415-939e-4722-9e22-35355fb6a7b8)" height ="100px">
 
 <br>
 
