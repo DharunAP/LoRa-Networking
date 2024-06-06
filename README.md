@@ -133,6 +133,9 @@
     TinyGPS++ (if not installed)
     
     SPI (if not installed)
+
+
+
 # ESP32 - LORA :
 
 ### LoRa (Long Range):
@@ -207,6 +210,8 @@
 - DIO0 on SX1278 to D26 / D2 on ESP32
 - RST on SXX1278 to D14 on ESP32
 
+
+
 # ESP32 - BMP280:
 
 ## BMP280:
@@ -268,6 +273,9 @@ GND             -          GND
 SDA              -          D21
 
 SCK               -          D22
+
+
+
 
 # ESP32 - BME280
 
@@ -341,6 +349,9 @@ SCK               -          D22
 
 
 
+
+
+
 # ESP32 - L89 :
 
 ![Untitled (8)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/06a7e3f7-622e-4006-8ad4-b28e1759ad41)
@@ -388,7 +399,7 @@ SCK               -          D22
 
 ## Pin Configurations:
 
-![Untitled](https://prod-files-s![Untitled (9)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/2a0962b9-a3a6-40c5-ba16-538216db7401)
+[Untitled (9)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/2a0962b9-a3a6-40c5-ba16-538216db7401)
 
 **L89**                          **ESP32** 
 
