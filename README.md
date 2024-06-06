@@ -687,7 +687,7 @@ The RHMesh library provides a robust framework for implementing mesh networks wi
 
 ## Code:
 
-```arduino
+```cpp
 // COM -
 //==========================================================================================================
 //                                              L I B R A R I E S                                           |
