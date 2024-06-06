@@ -135,7 +135,8 @@
     SPI (if not installed)
 
 
-
+<br>
+<br>
 # ESP32 - LORA :
 
 ### LoRa (Long Range):
@@ -399,7 +400,8 @@ SCK               -          D22
 
 ## Pin Configurations:
 
-[Untitled (9)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/2a0962b9-a3a6-40c5-ba16-538216db7401)
+![Untitled (9)](https://github.com/DharunAP/LoRa-Networking/assets/123437101/7d56d2e5-7d32-4040-ae67-09ddf02e1278)
+
 
 **L89**                          **ESP32** 
 
