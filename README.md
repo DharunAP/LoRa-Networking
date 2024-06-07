@@ -439,63 +439,63 @@ SCK               -          D22
 
 ### Electrical Characteristics:
 
-- *Supply Voltage (Vcc)*: 2.4V to 3.6V
-- *Current Consumption*:
-    - *Typical*: 0.12 mA
-    - *Maximum*: 0.20 mA (at H-resolution mode)
-- *Standby Current*: 0.01 µA
-- *I2C Bus Voltage*: 1.8V to 3.6V
-- *Output*: Digital, via I2C interface
+- **Supply Voltage (Vcc)**: 2.4V to 3.6V
+- **Current Consumption**:
+    - **Typical**: 0.12 mA
+    - **Maximum**: 0.20 mA (at H-resolution mode)
+- **Standby Current**: 0.01 µA
+- **I2C Bus Voltage**: 1.8V to 3.6V
+- **Output**: Digital, via I2C interface
 
 ### Light Measurement:
 
-- *Measurement Range*: 1 - 65535 lux
-- *Resolution*:
-    - *High Resolution Mode*: 1 lux
-    - *Low Resolution Mode*: 4 lux
-- *Accuracy*: ±20% (under defined conditions)
+- **Measurement Range**: 1 - 65535 lux
+- **Resolution**:
+    - **High Resolution Mode**: 1 lux
+    - **Low Resolution Mode**: 4 lux
+- **Accuracy**: ±20% (under defined conditions)
 
 ### Operating Conditions:
 
-- *Operating Temperature Range*: -40°C to +85°C
-- *Storage Temperature Range*: -40°C to +85°C
-- *Humidity Range*: 0% to 85% RH (non-condensing)
+- **Operating Temperature Range**: -40°C to +85°C
+- **Storage Temperature Range**: -40°C to +85°C
+- **Humidity Range**: 0% to 85% RH (non-condensing)
 
 ### Features:
 
-- *Modes*:
+- **Modes**:
     - High resolution mode: 1 lux resolution, 120 ms measurement time
     - High resolution mode 2: 0.5 lux resolution, 120 ms measurement time
     - Low resolution mode: 4 lux resolution, 16 ms measurement time
-- *Automatic data register reset (initiate new measurement cycle automatically)*
-- *Low current by power down function*
-- *Small measurement variation (± 20%)*
-- *Digital output I2C bus interface (fast-mode and high-speed mode are available)*
+- **Automatic data register reset (initiate new measurement cycle automatically)**
+- **Low current by power down function**
+- **Small measurement variation (± 20%)**
+- **Digital output I2C bus interface (fast-mode and high-speed mode are available)**
 
 ### Physical Characteristics:
 
-- *Package Type*:
+- **Package Type**:
     - BH1750FVI: Surface-mount package (8-pin SOP)
     - BH1750FVC: Chip-scale package
-- *Package Dimensions*:
+- **Package Dimensions**:
     - BH1750FVI: 4.5mm x 2.0mm x 1.1mm
     - BH1750FVC: 1.6mm x 1.6mm x 0.75mm
 
 ### Pin Configuration:
 
-- *SDA*: Serial Data (I2C data)
-- *SCL*: Serial Clock (I2C clock)
-- *ADDR*: I2C address selection (low for address 0x23, high for address 0x5C)
-- *GND*: Ground
-- *VCC*: Power Supply
-- *NC*: No Connect (unused pins)
+- **SDA**: Serial Data (I2C data)
+- **SCL**: Serial Clock (I2C clock)
+- **ADDR**: I2C address selection (low for address 0x23, high for address 0x5C)
+- **GND**: Ground
+- **VCC**: Power Supply
+- **NC**: No Connect (unused pins)
 
 ### Typical Applications:
 
-- *Mobile phones*
-- *Digital cameras*
-- *LCD TVs*
-- *Backlight control systems*
+- **Mobile phones**
+- **Digital cameras**
+- **LCD TVs**
+- **Backlight control systems**
 
 ### Reference Circuit:
 
@@ -512,7 +512,11 @@ These specifications make the BH1750 a versatile and efficient choice for ambien
 ## Pin Configurations:
 
 <img src="https://github.com/DharunAP/LoRa-Networking/assets/123437101/00c620e7-eb9d-4b39-9b9a-69ccfc2bd2c0" height="400px" >
-**L89**                          **ESP32** 
+
+<br>
+<br>
+
+**BH1750**                          **ESP32** 
 
 VCC              -          3.3v
 
