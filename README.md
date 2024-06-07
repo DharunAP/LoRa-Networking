@@ -941,7 +941,7 @@ const uint16_t SEND_RETRY_DELAY = 100;  // Milliseconds
 // WiFi credentials
 const char* ssid = "POCO";  // Replace with your WiFi SSID
 const char* password = "hellobrooo";  // Replace with your WiFi password
-const char* serverUrl = "http://192.168.168.47:5000/user/loraSend";  // Replace with your server endpoint
+const char* serverUrl = "http://192.168.112.1:8000/user/loraSend";  // Replace with your server endpoint
 
 // Global variables
 bool flg = false;
@@ -1054,8 +1054,8 @@ void Task2code(void *pvParameters) {
       Serial.print(": ");
       Serial.println((char*)buf);  // Print the received message
       
-//      String abc = (char*)buf ;
-//       sendDatas(String(abc));  // Send data to the server (currently commented out)
+      //String abc = (char*)buf ;
+      // sendDatas(String(abc);  // Send data to the server (currently commented out)
     } else {
       Serial.println("No message received");
     }
@@ -1115,57 +1115,31 @@ void printLocalTime() {
   
   // Print different time formats
   Serial.println(&timeinfo, "%A, %B %d %Y %H:%M:%S");
-  Serial.print("Day of week: ");
-  Serial.println(&timeinfo, "%A");
-  Serial.print("Month: ");
-  Serial.println(&timeinfo, "%B");
-  Serial.print("Day of Month: ");
-  Serial.println(&timeinfo, "%d");
-  Serial.print("Year: ");
-  Serial.println(&timeinfo, "%Y");
-  Serial.print("Hour: ");
-  Serial.println(&timeinfo, "%H");
-  Serial.print("Hour (12 hour format): ");
-  Serial.println(&timeinfo, "%I");
-  Serial.print("Minute: ");
-  Serial.println(&timeinfo, "%M");
-  Serial.print("Second: ");
-  Serial.println(&timeinfo, "%S");
+  // Other prints omitted for brevity
 
-  Serial.println("Time variables");
-
-  // Extract day as a string
-  char timeDay[3];
+  // Extract day, month, year, minute, and second as strings
+  char timeDay[3], timeMonth[3], timeYear[5], timeMin[3], timeSec[3];
   strftime(timeDay, 3, "%d", &timeinfo);
+  strftime(timeMonth, 3, "%m", &timeinfo);
+  strftime(timeYear, 5, "%Y", &timeinfo);
+  strftime(timeMin, 3, "%M", &timeinfo);
+  strftime(timeSec, 3, "%S", &timeinfo);
+
   Serial.print("Day: ");
   Serial.println(timeDay);
-
-  // Extract month as a string
-  char timeMonth[3];
-  strftime(timeMonth, 3, "%m", &timeinfo); // %m gives month as a number
   Serial.print("Month: ");
   Serial.println(timeMonth);
-
-  // Extract year as a string
-  char timeYear[5];
-  strftime(timeYear, 5, "%Y", &timeinfo);
   Serial.print("Year: ");
   Serial.println(timeYear);
-
-  // Extract minute as a string
-  char timeMin[3];
-  strftime(timeMin, 3, "%M", &timeinfo);
   Serial.print("Minute: ");
   Serial.println(timeMin);
-
-  // Extract second as a string
-  char timeSec[3];
-  strftime(timeSec, 3, "%S", &timeinfo);
   Serial.print("Second: ");
   Serial.println(timeSec);
 
-  // Convert seconds to integer for conditional checks
+  // Convert seconds to integer
   int sec = atoi(timeSec);
+  Serial.print("Sec ----->");
+  Serial.println(sec);
 
   // Check if the seconds are equal to 15, 30, 45, 0, or 20
   if (sec == 15 || sec == 30 || sec == 45 || sec == 0 || sec == 20) {
@@ -1173,18 +1147,16 @@ void printLocalTime() {
 
     // Construct TimeData string with date and time in numeric format
     TimeData = "";
-   
-    TimeData += timeMin[0];  // Add first character of minute
-    TimeData += timeMin[1];  // Add second character of minute
-    TimeData += timeSec[0];  // Add first character of second
-    TimeData += timeSec[1];  // Add second character of second
-
-    TimeData += timeDay[0];  // Add first character of day
-    TimeData += timeDay[1];  // Add second character of day
-    TimeData += timeMonth[0];  // Add first character of month
-    TimeData += timeMonth[1];  // Add second character of month
-    TimeData += timeYear[2];  // Add third character of year (last two digits)
-    TimeData += timeYear[3];  // Add fourth character of year (last two digits)
+    TimeData += timeMin[0];
+    TimeData += timeMin[1];
+    TimeData += timeSec[0];
+    TimeData += timeSec[1];
+    TimeData += timeDay[0];
+    TimeData += timeDay[1];
+    TimeData += timeMonth[0];
+    TimeData += timeMonth[1];
+    TimeData += timeYear[2];
+    TimeData += timeYear[3];
 
     // Log the constructed TimeData
     Serial.print("TimeData=");
@@ -1192,7 +1164,7 @@ void printLocalTime() {
 
     // Prepare the message for sending
     uint8_t buff[TimeData.length() + 1];
-    TimeData.getBytes(buff, sizeof(buff));  // Copy TimeData into buff
+    TimeData.getBytes(buff, sizeof(buff));
     uint8_t len = TimeData.length() + 1;
 
     // Send the message to other nodes
@@ -1229,7 +1201,6 @@ void printLocalTime() {
     Serial.println("The second is not 0, 20, 15, 30, or 45.");
   }
 }
-
 
 //==========================================================================================================
 //                                         F U N C T I O N S    F O R   B O T H   C O R E                   |
