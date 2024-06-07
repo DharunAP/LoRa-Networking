@@ -203,58 +203,62 @@ void printLocalTime() {
     Serial.println("Failed to obtain time");
     return;
   }
-  //Different time formats
+  
+  // Print different time formats
   Serial.println(&timeinfo, "%A, %B %d %Y %H:%M:%S");
-  Serial.print("Day of week: ");
-  Serial.println(&timeinfo, "%A");
-  Serial.print("Month: ");
-  Serial.println(&timeinfo, "%B");
-  Serial.print("Day of Month: ");
-  Serial.println(&timeinfo, "%d");
-  Serial.print("Year: ");
-  Serial.println(&timeinfo, "%Y");
-  Serial.print("Hour: ");
-  Serial.println(&timeinfo, "%H");
-  Serial.print("Hour (12 hour format): ");
-  Serial.println(&timeinfo, "%I");
-  Serial.print("Minute: ");
-  Serial.println(&timeinfo, "%M");
-  Serial.print("Second: ");
-  Serial.println(&timeinfo, "%S");
+  // Other prints omitted for brevity
 
-  Serial.println("Time variables");
-
-  // Extract minute and second as strings
-  char timeMin[3];
+  // Extract day, month, year, minute, and second as strings
+  char timeDay[3], timeMonth[3], timeYear[5], timeMin[3], timeSec[3];
+  strftime(timeDay, 3, "%d", &timeinfo);
+  strftime(timeMonth, 3, "%m", &timeinfo);
+  strftime(timeYear, 5, "%Y", &timeinfo);
   strftime(timeMin, 3, "%M", &timeinfo);
+  strftime(timeSec, 3, "%S", &timeinfo);
+
+  Serial.print("Day: ");
+  Serial.println(timeDay);
+  Serial.print("Month: ");
+  Serial.println(timeMonth);
+  Serial.print("Year: ");
+  Serial.println(timeYear);
   Serial.print("Minute: ");
   Serial.println(timeMin);
-
-  char timeSec[3];
-  strftime(timeSec, 3, "%S", &timeinfo);
   Serial.print("Second: ");
   Serial.println(timeSec);
 
   // Convert seconds to integer
   int sec = atoi(timeSec);
+  Serial.print("Sec ----->");
+  Serial.println(sec);
 
-  // Check if the seconds are equal to 15, 30, 45, 0, 20, 10, or 50
-  if (sec == 15 || sec == 30 || sec == 45 || sec == 00 || sec == 20) {
-    Serial.println("The second is either 15, 30, 45, 0, 20");
+  // Check if the seconds are equal to 15, 30, 45, 0, or 20
+  if (sec == 15 || sec == 30 || sec == 45 || sec == 0 || sec == 20) {
+    Serial.println("The second is either 15, 30, 45, 0, or 20");
+
+    // Construct TimeData string with date and time in numeric format
     TimeData = "";
     TimeData += timeMin[0];
     TimeData += timeMin[1];
     TimeData += timeSec[0];
     TimeData += timeSec[1];
+    TimeData += timeDay[0];
+    TimeData += timeDay[1];
+    TimeData += timeMonth[0];
+    TimeData += timeMonth[1];
+    TimeData += timeYear[2];
+    TimeData += timeYear[3];
+
+    // Log the constructed TimeData
+    Serial.print("TimeData=");
+    Serial.println(TimeData);
 
     // Prepare the message for sending
     uint8_t buff[TimeData.length() + 1];
     TimeData.getBytes(buff, sizeof(buff));
     uint8_t len = TimeData.length() + 1;
-    Serial.print("TimeData=");
-    Serial.println(TimeData);
 
-    // Send the message
+    // Send the message to other nodes
     uint8_t result = manager.sendtoWait(buff, len, RH_BROADCAST_ADDRESS);
     Serial.println("Message SENDING");
     Serial.print("Result=");
@@ -262,33 +266,30 @@ void printLocalTime() {
 
     // Handle send errors and retry if necessary
     if (result != RH_ROUTER_ERROR_NONE) {
-      handleSendError(result);
+      handleSendError(result);  // Log the error
       vTaskDelay(SEND_RETRY_DELAY / portTICK_PERIOD_MS);  // Delay before retrying
       esp_task_wdt_reset();  // Feed the watchdog timer
 
-      //Sending message Again
+      // Sending message again
       result = manager.sendtoWait(buff, len, RH_BROADCAST_ADDRESS);
       Serial.println("Retrying Message SENDING");
       Serial.print("Result=");
       Serial.println(result);
 
-      //If the meesage if not success
+      // If the message is not successful
       if (result != RH_ROUTER_ERROR_NONE) {
-          handleSendError(result);
+        handleSendError(result);  // Log the error
       } else {
-        //if result code is equal to RH_ROUTER_ERROR_NONE (it means 0)
-          Serial.println("Message forwarded successfully to the next hop.");
+        // If result code is equal to RH_ROUTER_ERROR_NONE (it means 0)
+        Serial.println("Message forwarded successfully to the next hop.");
       }
-  } else {
-    //if result code is equal to RH_ROUTER_ERROR_NONE (it means 0)
+    } else {
+      // If result code is equal to RH_ROUTER_ERROR_NONE (it means 0)
       Serial.println("Message forwarded successfully to the next hop.");
-  }
-
-
-
+    }
   } else {
-    //if second is not equal to 15, 30, 45 , 0 or 20
-    Serial.println("The second is not 0 , 20 , 15, 30, or 45.");
+    // If second is not equal to 15, 30, 45, 0, or 20
+    Serial.println("The second is not 0, 20, 15, 30, or 45.");
   }
 }
 
