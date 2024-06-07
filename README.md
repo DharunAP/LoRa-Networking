@@ -421,9 +421,11 @@ SDA              -          D21
 SCK               -          D22
 
 
-<br>
-<br>
 
+<br>
+<br>
+<br>
+<br>
 
 
 # ESP32 - BH1750:
@@ -527,8 +529,11 @@ SDA              -          D21
 SCl               -           D22
 
 
+
 <br>
 <br>
+<br>
+
 
 # ESP32 - L89 :
 
@@ -860,7 +865,10 @@ The RHMesh library provides a robust framework for implementing mesh networks wi
 
 <br>
     
----
+
+<br>
+
+
 
   
 # Mesh Nodes
