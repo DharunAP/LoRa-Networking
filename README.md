@@ -423,8 +423,108 @@ SCK               -          D22
 
 <br>
 <br>
-<br>
 
+
+
+# ESP32 - BH1750:
+
+<img src="https://github.com/DharunAP/LoRa-Networking/assets/123437101/6a74324d-e5f8-4bf1-8621-f21d15d2316f" height ="400px" >
+
+
+## Specifications:
+
+### Model:
+
+- The BH1750 is a light intensity sensor developed by Rohm.
+
+### Electrical Characteristics:
+
+- *Supply Voltage (Vcc)*: 2.4V to 3.6V
+- *Current Consumption*:
+    - *Typical*: 0.12 mA
+    - *Maximum*: 0.20 mA (at H-resolution mode)
+- *Standby Current*: 0.01 µA
+- *I2C Bus Voltage*: 1.8V to 3.6V
+- *Output*: Digital, via I2C interface
+
+### Light Measurement:
+
+- *Measurement Range*: 1 - 65535 lux
+- *Resolution*:
+    - *High Resolution Mode*: 1 lux
+    - *Low Resolution Mode*: 4 lux
+- *Accuracy*: ±20% (under defined conditions)
+
+### Operating Conditions:
+
+- *Operating Temperature Range*: -40°C to +85°C
+- *Storage Temperature Range*: -40°C to +85°C
+- *Humidity Range*: 0% to 85% RH (non-condensing)
+
+### Features:
+
+- *Modes*:
+    - High resolution mode: 1 lux resolution, 120 ms measurement time
+    - High resolution mode 2: 0.5 lux resolution, 120 ms measurement time
+    - Low resolution mode: 4 lux resolution, 16 ms measurement time
+- *Automatic data register reset (initiate new measurement cycle automatically)*
+- *Low current by power down function*
+- *Small measurement variation (± 20%)*
+- *Digital output I2C bus interface (fast-mode and high-speed mode are available)*
+
+### Physical Characteristics:
+
+- *Package Type*:
+    - BH1750FVI: Surface-mount package (8-pin SOP)
+    - BH1750FVC: Chip-scale package
+- *Package Dimensions*:
+    - BH1750FVI: 4.5mm x 2.0mm x 1.1mm
+    - BH1750FVC: 1.6mm x 1.6mm x 0.75mm
+
+### Pin Configuration:
+
+- *SDA*: Serial Data (I2C data)
+- *SCL*: Serial Clock (I2C clock)
+- *ADDR*: I2C address selection (low for address 0x23, high for address 0x5C)
+- *GND*: Ground
+- *VCC*: Power Supply
+- *NC*: No Connect (unused pins)
+
+### Typical Applications:
+
+- *Mobile phones*
+- *Digital cameras*
+- *LCD TVs*
+- *Backlight control systems*
+
+### Reference Circuit:
+
+- Pull-up resistors (typically 10 kΩ) are required for the SDA and SCL lines.
+- Capacitor (0.1 µF) between VCC and GND for power stabilization.
+
+### Usage Notes:
+
+- The BH1750 can be directly connected to a microcontroller's I2C bus.
+- It has two I2C addresses selectable by the ADDR pin, allowing for easy integration with other I2C devices.
+
+These specifications make the BH1750 a versatile and efficient choice for ambient light sensing in a wide range of consumer electronics and industrial applications.
+
+## Pin Configurations:
+
+<img src="https://github.com/DharunAP/LoRa-Networking/assets/123437101/00c620e7-eb9d-4b39-9b9a-69ccfc2bd2c0" height="400px" >
+**L89**                          **ESP32** 
+
+VCC              -          3.3v
+
+GND             -          GND
+
+SDA              -          D21
+
+SCl               -           D22
+
+
+<br>
+<br>
 
 # ESP32 - L89 :
 
@@ -795,7 +895,7 @@ The RHMesh library provides a robust framework for implementing mesh networks wi
 ## Code:
 
 ```cpp
-// COM -
+// COM -13
 //==========================================================================================================
 //                                              L I B R A R I E S                                           |
                                                                                                             
@@ -810,6 +910,8 @@ The RHMesh library provides a robust framework for implementing mesh networks wi
 #include <Arduino.h>
 #include "time.h"
 #include "esp_task_wdt.h"
+
+
 
 //==========================================================================================================
 //                                              I N I T I A L I S A T I O N                                 |
@@ -827,7 +929,7 @@ const uint16_t SEND_RETRY_DELAY = 100;  // Milliseconds
 // WiFi credentials
 const char* ssid = "POCO";  // Replace with your WiFi SSID
 const char* password = "hellobrooo";  // Replace with your WiFi password
-const char* serverUrl = "http://192.168.112.1:8000/user/loraSend";  // Replace with your server endpoint
+const char* serverUrl = "http://192.168.168.47:5000/user/loraSend";  // Replace with your server endpoint
 
 // Global variables
 bool flg = false;
@@ -940,8 +1042,8 @@ void Task2code(void *pvParameters) {
       Serial.print(": ");
       Serial.println((char*)buf);  // Print the received message
       
-      //String abc = (char*)buf ;
-      // sendDatas(String(abc);  // Send data to the server (currently commented out)
+//      String abc = (char*)buf ;
+//       sendDatas(String(abc));  // Send data to the server (currently commented out)
     } else {
       Serial.println("No message received");
     }
@@ -998,7 +1100,8 @@ void printLocalTime() {
     Serial.println("Failed to obtain time");
     return;
   }
-  //Different time formats
+  
+  // Print different time formats
   Serial.println(&timeinfo, "%A, %B %d %Y %H:%M:%S");
   Serial.print("Day of week: ");
   Serial.println(&timeinfo, "%A");
@@ -1019,37 +1122,68 @@ void printLocalTime() {
 
   Serial.println("Time variables");
 
-  // Extract minute and second as strings
+  // Extract day as a string
+  char timeDay[3];
+  strftime(timeDay, 3, "%d", &timeinfo);
+  Serial.print("Day: ");
+  Serial.println(timeDay);
+
+  // Extract month as a string
+  char timeMonth[3];
+  strftime(timeMonth, 3, "%m", &timeinfo); // %m gives month as a number
+  Serial.print("Month: ");
+  Serial.println(timeMonth);
+
+  // Extract year as a string
+  char timeYear[5];
+  strftime(timeYear, 5, "%Y", &timeinfo);
+  Serial.print("Year: ");
+  Serial.println(timeYear);
+
+  // Extract minute as a string
   char timeMin[3];
   strftime(timeMin, 3, "%M", &timeinfo);
   Serial.print("Minute: ");
   Serial.println(timeMin);
 
+  // Extract second as a string
   char timeSec[3];
   strftime(timeSec, 3, "%S", &timeinfo);
   Serial.print("Second: ");
   Serial.println(timeSec);
 
-  // Convert seconds to integer
+  // Convert seconds to integer for conditional checks
   int sec = atoi(timeSec);
 
-  // Check if the seconds are equal to 15, 30, 45, 0, 20, 10, or 50
-  if (sec == 15 || sec == 30 || sec == 45 || sec == 00 || sec == 20) {
-    Serial.println("The second is either 15, 30, 45, 0, 20");
-    TimeData = "";
-    TimeData += timeMin[0];
-    TimeData += timeMin[1];
-    TimeData += timeSec[0];
-    TimeData += timeSec[1];
+  // Check if the seconds are equal to 15, 30, 45, 0, or 20
+  if (sec == 15 || sec == 30 || sec == 45 || sec == 0 || sec == 20) {
+    Serial.println("The second is either 15, 30, 45, 0, or 20");
 
-    // Prepare the message for sending
-    uint8_t buff[TimeData.length() + 1];
-    TimeData.getBytes(buff, sizeof(buff));
-    uint8_t len = TimeData.length() + 1;
+    // Construct TimeData string with date and time in numeric format
+    TimeData = "";
+   
+    TimeData += timeMin[0];  // Add first character of minute
+    TimeData += timeMin[1];  // Add second character of minute
+    TimeData += timeSec[0];  // Add first character of second
+    TimeData += timeSec[1];  // Add second character of second
+
+    TimeData += timeDay[0];  // Add first character of day
+    TimeData += timeDay[1];  // Add second character of day
+    TimeData += timeMonth[0];  // Add first character of month
+    TimeData += timeMonth[1];  // Add second character of month
+    TimeData += timeYear[2];  // Add third character of year (last two digits)
+    TimeData += timeYear[3];  // Add fourth character of year (last two digits)
+
+    // Log the constructed TimeData
     Serial.print("TimeData=");
     Serial.println(TimeData);
 
-    // Send the message
+    // Prepare the message for sending
+    uint8_t buff[TimeData.length() + 1];
+    TimeData.getBytes(buff, sizeof(buff));  // Copy TimeData into buff
+    uint8_t len = TimeData.length() + 1;
+
+    // Send the message to other nodes
     uint8_t result = manager.sendtoWait(buff, len, RH_BROADCAST_ADDRESS);
     Serial.println("Message SENDING");
     Serial.print("Result=");
@@ -1057,33 +1191,33 @@ void printLocalTime() {
 
     // Handle send errors and retry if necessary
     if (result != RH_ROUTER_ERROR_NONE) {
-      handleSendError(result);
+      handleSendError(result);  // Log the error
       vTaskDelay(SEND_RETRY_DELAY / portTICK_PERIOD_MS);  // Delay before retrying
       esp_task_wdt_reset();  // Feed the watchdog timer
 
-      //Sending message Again
+      // Sending message again
       result = manager.sendtoWait(buff, len, RH_BROADCAST_ADDRESS);
       Serial.println("Retrying Message SENDING");
       Serial.print("Result=");
       Serial.println(result);
 
-      //If the meesage if not success
+      // If the message is not successful
       if (result != RH_ROUTER_ERROR_NONE) {
-          handleSendError(result);
+        handleSendError(result);  // Log the error
       } else {
-        //if result code is equal to RH_ROUTER_ERROR_NONE (it means 0)
-          Serial.println("Message forwarded successfully to the next hop.");
+        // If result code is equal to RH_ROUTER_ERROR_NONE (it means 0)
+        Serial.println("Message forwarded successfully to the next hop.");
       }
-  } else {
-    //if result code is equal to RH_ROUTER_ERROR_NONE (it means 0)
+    } else {
+      // If result code is equal to RH_ROUTER_ERROR_NONE (it means 0)
       Serial.println("Message forwarded successfully to the next hop.");
-  }
-
+    }
   } else {
-    //if second is not equal to 15, 30, 45 , 0 or 20
-    Serial.println("The second is not 0 , 20 , 15, 30, or 45.");
+    // If second is not equal to 15, 30, 45, 0, or 20
+    Serial.println("The second is not 0, 20, 15, 30, or 45.");
   }
 }
+
 
 //==========================================================================================================
 //                                         F U N C T I O N S    F O R   B O T H   C O R E                   |
@@ -1303,6 +1437,7 @@ The code leverages LoRa for long-range, low-power wireless communication and WiF
 #include <HTTPClient.h>
 #include <Arduino.h>
 
+
 /==========================================================================================================
 //                                              I N I T I A L I S A T I O N                                 |
                                                                                                             
@@ -1337,9 +1472,13 @@ int hr = 0;
 int mi = 0;
 int sec = 0;
 
+
+
 // Access Point credentials
 const char* sssid = "ESP32_Hotspot";
 const char* passsword = "123456789";
+
+
 
 // Current firmware version
 const String currentVersion = "1.0.0";
@@ -1357,10 +1496,13 @@ void handleVersionCheck();
 TaskHandle_t Task1;
 TaskHandle_t Task2;
 
+
 //==========================================================================================================
 //                                              S E T U P                                                   |
                                                                                                             
 //==========================================================================================================
+
+
 
 void setup() {
   Serial.begin(9600);
@@ -1417,11 +1559,15 @@ void setup() {
     1);           // Core to run the task on (1)
 }
 
+
+
 //=========================================================================================================
 void loop() {
   // Do nothing in the main loop                                                                           |
 }
 //=========================================================================================================
+
+
 
 //==========================================================================================================
 //                                              C O R E - 0                                                 |
@@ -1457,10 +1603,14 @@ void Task1code(void * pvParameters) {
   }
 }
 
+
+
+
 //==========================================================================================================
 //                                              C O R E - 1                                                 |
                                                               //                                            |
 //==========================================================================================================
+
 
 // Task2 function for handling server requests and mesh communication   ---> CORE 1
 void Task2code(void * pvParameters) {
@@ -1489,10 +1639,21 @@ void Task2code(void * pvParameters) {
         //Getting the Hour and Minute from central station in Integer format
         int hr = (buf[0] - '0') * 10 + (buf[1] - '0');
         int mi = (buf[2] - '0') * 10 + (buf[3] - '0');
+        
+        // Extract date from received buffer
+        int da = (buf[4] - '0') * 10 + (buf[5] - '0'); // Extract day
+        int mont = (buf[6] - '0') * 10 + (buf[7] - '0'); // Extract month
+        int yea = (buf[8] - '0') * 10 + (buf[9] - '0'); // Extract year (last two digits)
 
-        //String of combinig all parameters from the sensor to single string
+         float temperature = temperatureRead() - 22 ;// Get temperature in degrees Celsius
+         Serial.println("Temp=");
+         Serial.println(temperature);
+
+        // Format the data string to send
         char dat[50];
-        snprintf(dat, sizeof(dat), "%02d%02d%.3f%.3f", hr, mi, latitude, longitude);
+        // Combining into a single string using snprintf = format =>(char *t ,size , format , ...)
+        snprintf(dat, sizeof(dat), "%02d-%02d-%02d %02d:%02d %.3f %.3f %.1f", 
+                 da, mont, yea, hr, mi, latitude, longitude, temperature);
         Serial.print("Data=");
         Serial.println(dat);
         
@@ -1578,6 +1739,9 @@ void Task2code(void * pvParameters) {
   }
 }
 
+
+
+
 //==========================================================================================================
 //                                         F U N C T I O N S    F O R   C O R E - 1                         |
                                                                                                             
@@ -1640,11 +1804,18 @@ void handleUpdate() {
   }
 }
 
+
+
+
+
 // Handle root URL request
 void handleRoot() {
   Serial.println("Received request...");
   server.send(200, "text/plain", "success");
 }
+
+
+
 
 // Handle data endpoint request
 void handleData() {
@@ -1692,10 +1863,14 @@ void handleData() {
   }
 }
 
-// Handle version check endpoint request
+
+
+
+// Handle version check endpoint request  a
 void handleVersionCheck() {
   server.send(200, "text/plain", currentVersion);
 }
+
 
 //==========================================================================================================
 //                                         F U N C T I O N S    F O R   C O R E - 0                         |
@@ -2220,6 +2395,441 @@ void handleData() {
 void handleVersionCheck() {
   server.send(200, "text/plain", currentVersion); // Send current version as response
 }
+
+//==========================================================================================================
+//                                         F U N C T I O N S    F O R   C O R E - 0                         |
+//                                                                                                          |
+//==========================================================================================================
+
+//                                                NO specific functions
+
+// COM -
+//==========================================================================================================
+//                                              L I B R A R I E S                                           |
+                                                                                                            
+//==========================================================================================================
+#include <RHMesh.h>
+#include <RH_RF95.h>
+#include <SPI.h>
+#include <WiFi.h>
+#include <Update.h>
+#include <esp_ota_ops.h>
+#include <WebServer.h>
+#include <HTTPClient.h>
+#include <Arduino.h>
+#include <Wire.h>
+#include <Adafruit_Sensor.h>
+#include <Adafruit_BME280.h>
+
+
+
+//==========================================================================================================
+//                                              I N I T I A L I S A T I O N                                 |
+                                                                                                            
+//==========================================================================================================
+// Task Handles for FreeRTOS tasks
+TaskHandle_t Task1;
+TaskHandle_t Task2;
+
+// LoRa Parameters
+#define RFM95_CS 5    // Chip Select pin for RF95
+#define RFM95_RST 14  // Reset pin for RF95
+#define RFM95_INT 26  // Interrupt pin for RF95
+#define NODE_ID 4     // Unique node ID for this device
+#define DEST_NODE_ID 1 // Destination node ID to send messages is Central Station
+
+// Instantiate the RF95 radio and mesh manager
+RH_RF95 rf95(RFM95_CS, RFM95_INT);
+RHMesh manager(rf95, NODE_ID);
+
+
+
+// AP (Access Point) Credentials for the ESP32's hotspot
+const char* sssid = "ESP32_Hotspot";
+const char* passsword = "123456789";
+
+
+
+// Current Firmware Version
+const String currentVersion = "1.0.0";
+
+// GPS Coordinates (simulated)
+float latitude = 19.0000;
+float longitude = 18.6000;
+
+// Define I²C pins for BMP280 sensor
+#define SDA_PIN 21
+#define SCL_PIN 22
+
+// WebServer instance on port 80
+WebServer server(80);
+
+// Function declarations
+void handleRoot();
+void handleData();
+void handleVersionCheck();
+
+// Instantiate BMP280 sensor object
+Adafruit_BME280 bmp; // I²C
+
+
+
+
+//==========================================================================================================
+//                                              S E T U P                                                   |
+                                                                                                            
+//==========================================================================================================
+void setup() {
+  // Initialize serial communication for debugging
+  Serial.begin(9600);
+
+  // Initialize I²C communication
+  Wire.begin(SDA_PIN, SCL_PIN);
+
+  // Initialize the BMP280 sensor
+  if (!bmp.begin(0x76)) { // Default I²C address for BMP280 is 0x76
+    Serial.println("Could not find a valid BMP280 sensor, check wiring!");
+    while (1); // Halt if sensor initialization fails
+  }
+
+  // Reset RF95 module
+  pinMode(RFM95_RST, OUTPUT);
+  digitalWrite(RFM95_RST, LOW);
+  delay(10);
+  digitalWrite(RFM95_RST, HIGH);
+  delay(10);
+
+  // Initialize RF95 module
+  if (!rf95.init()) {
+    Serial.println("RF95 init failed");
+    while (1); // Halt if RF95 initialization fails
+  }
+
+  // Set RF95 parameters
+  rf95.setFrequency(433.0); // Set frequency to 433 MHz
+  rf95.setTxPower(5); // Set transmission power
+
+  // Initialize mesh manager
+  if (!manager.init()) {
+    Serial.println("Mesh init failed");
+    while (1); // Halt if mesh initialization fails
+  }
+  Serial.println("Mesh init successful");
+
+  // Start Wi-Fi AP (Access Point)
+  WiFi.softAP(sssid, passsword);
+  server.on("/", handleRoot); // Define HTTP endpoint for root
+  server.on("/endpoint", handleData); // Define HTTP endpoint for data
+  server.on("/version", handleVersionCheck); // Define HTTP endpoint for version check
+  server.begin(); // Start the HTTP server
+  Serial.println("HTTP server started");
+
+  // Create FreeRTOS tasks
+  xTaskCreatePinnedToCore(Task1code, "Task1", 10000, NULL, 1, &Task1, 0);
+  xTaskCreatePinnedToCore(Task2code, "Task2", 10000, NULL, 1, &Task2, 1);
+}
+
+
+
+//=========================================================================================================
+void loop() {
+  // Main loop is empty because all functionality is handled in tasks                                      |
+}
+//=========================================================================================================
+
+
+
+
+//==========================================================================================================
+//                                              C O R E - 0                                                 |
+                                                                                                            
+//==========================================================================================================
+
+
+
+// Task to handle HTTP server requests
+void Task1code(void * pvParameters) {
+  for (;;) {
+    server.handleClient(); // Handle incoming client requests
+    vTaskDelay(100 / portTICK_PERIOD_MS); // Delay for stability
+  }
+}
+
+
+//==========================================================================================================
+//                                              C O R E - 1                                                 |
+                                                                                                            
+//==========================================================================================================
+
+
+
+// Task to handle mesh network communication
+void Task2code(void * pvParameters) {
+  uint8_t buf[RH_MESH_MAX_MESSAGE_LEN]; // Buffer to store incoming messages
+  uint8_t len = sizeof(buf);
+  uint8_t from, to, id, flags, hops;
+
+  for (;;) {
+    // Check if a message is received
+    if (manager.recvfromAck(buf, &len, &from, &to, &id, &flags, &hops)) {
+      Serial.print("Received message from node "); 
+      Serial.print(from);
+      Serial.print(" to node "); 
+      Serial.print(to);
+      Serial.print(": "); 
+      Serial.println((char*)buf);
+
+      // If the message is from node 1, process it
+      if (from == 1) {
+        // Read sensor data from BMP280
+        float temperature = bmp.readTemperature();
+        float pressure = bmp.readPressure();
+    
+        // Print the readings to the Serial Monitor
+        Serial.print("Temperature = ");
+        Serial.print(temperature);
+        Serial.println(" *C");
+    
+        Serial.print("Pressure = ");
+        Serial.print(pressure / 100.0F); // Convert to hPa
+        Serial.println(" hPa");
+    
+        // Calculate humidity
+        float alti = bmp.readHumidity();
+        Serial.print("Approx. Humidity = ");
+        Serial.print(alti);
+        Serial.println(" %");
+
+        // Extract time from received buffer
+        int hr = (buf[0] - '0') * 10 + (buf[1] - '0'); // Extract hours
+        int mi = (buf[2] - '0') * 10 + (buf[3] - '0'); // Extract minutes
+
+        // Extract date from received buffer
+        int da = (buf[4] - '0') * 10 + (buf[5] - '0'); // Extract day
+        int mont = (buf[6] - '0') * 10 + (buf[7] - '0'); // Extract month
+        int yea = (buf[8] - '0') * 10 + (buf[9] - '0'); // Extract year (last two digits)
+
+        // Format the data string to send
+        char dat[50];
+        // Combining into a single string using snprintf = format =>(char *t ,size , format , ...)
+        snprintf(dat, sizeof(dat), "%02d-%02d-%02d %02d:%02d %.3f %.3f %.1f %.1f %.1f", 
+                 da, mont, yea, hr, mi, latitude, longitude, temperature, pressure, alti);
+        Serial.print("Data=");
+        Serial.println(dat);
+
+        // Prepare the data for sending
+        int dataLength = strlen(dat);
+        uint8_t buff[RH_MESH_MAX_MESSAGE_LEN];
+        memcpy(buff, dat, dataLength + 1);  // Include null terminator
+        len = dataLength + 1;
+      
+        uint8_t cent = 1; // Central node ID
+      
+        vTaskDelay(NODE_ID * 1200 / portTICK_PERIOD_MS); // Delay based on node ID
+        uint8_t result = manager.sendtoWait(buff, len, cent);
+        Serial.println("Message SENDING");
+        Serial.print("result=");
+        Serial.println(result);
+
+        // Check the result of the send operation
+        if (result == RH_ROUTER_ERROR_NONE) {
+          // Result code = 0
+          Serial.println("Message forwarded successfully to the next hop.");
+        } else {
+          Serial.print("Message send failed, error code: ");
+          Serial.println(result);
+          handleSendError(result); 
+          
+          // Handle send error and retry
+          result = manager.sendtoWait(buff, len, cent);
+          Serial.println("Message SENDING");
+          Serial.print("result=");
+          Serial.println(result);
+          if (result == RH_ROUTER_ERROR_NONE) {
+            // Result code = 0
+            Serial.println("Message forwarded successfully to the next hop.");
+          } else {
+            Serial.print("Message send failed, error code: ");
+            Serial.println(result);
+            handleSendError(result); // Handle send error and retry
+          }
+        }
+      } else {
+        // Forward the message to its intended recipient
+        uint8_t result = manager.sendtoWait(buf, len, to);
+        Serial.println("Message SENDING");
+        Serial.print("result=");
+        Serial.println(result);
+
+        // Printing the result status
+        if (result == RH_ROUTER_ERROR_NONE) {
+          // Result = 0 (code)
+          Serial.println("Message forwarded successfully to the next hop.");
+        } else {
+          Serial.print("Message send failed, error code: ");
+          Serial.println(result);
+          handleSendError(result); // Handle send error and retry
+          result = manager.sendtoWait(buf, len, to);
+          Serial.println("Message SENDING");
+          Serial.print("result=");
+          Serial.println(result);
+          
+          // Printing the result status
+          if (result == RH_ROUTER_ERROR_NONE) {
+            // Result = 0 (code)
+            Serial.println("Message forwarded successfully to the next hop.");
+          } else {
+            Serial.print("Message send failed, error code: ");
+            Serial.println(result);
+            handleSendError(result); // Handle send error and retry
+          }
+        }
+      }
+    } else {
+      Serial.println("No message received");
+    }
+    vTaskDelay(100 / portTICK_PERIOD_MS); // Delay between checks for incoming messages
+  }
+}
+
+
+
+//==========================================================================================================
+//                                         F U N C T I O N S    F O R   C O R E - 1                         |
+                                                                                                            
+//==========================================================================================================
+// Function to handle different send errors
+void handleSendError(uint8_t result) {
+  if (result == RH_ROUTER_ERROR_NO_ROUTE) {
+    //result code =1
+    Serial.println("Error: No route to destination node.");
+  } else if (result == RH_ROUTER_ERROR_TIMEOUT) {
+    //result code = 2
+    Serial.println("Error: Timeout waiting for ACK.");
+  } else {
+    Serial.println("Error: General send failure.");
+  }
+}
+
+
+
+void handleUpdate() {
+  // Get the current upload status and data
+  HTTPUpload& upload = server.upload();
+
+  // If the upload has started
+  if (upload.status == UPLOAD_FILE_START) {
+    Serial.printf("Update: %s\n", upload.filename.c_str());  // Print the filename of the firmware being uploaded
+
+    // Start the update with an unknown size
+    if (!Update.begin(UPDATE_SIZE_UNKNOWN)) {
+      Update.printError(Serial);  // Print any errors that occur during the start of the update
+    }
+  } 
+  // If data is being written to the flash memory
+  else if (upload.status == UPLOAD_FILE_WRITE) {
+    // Write the received buffer to the update and check if the size matches
+    if (Update.write(upload.buf, upload.currentSize) != upload.currentSize) {
+      Update.printError(Serial);  // Print any errors that occur during writing
+    }
+  } 
+  // If the upload has finished
+  else if (upload.status == UPLOAD_FILE_END) {
+    // End the update and set the final size
+    if (Update.end(true)) {
+      Serial.printf("Update Success: %u\nRebooting...\n", upload.totalSize);  // Print the total size of the uploaded firmware
+
+      // Check if the update is finished
+      if (Update.isFinished()) {
+        esp_ota_mark_app_valid_cancel_rollback();  // Mark the update as valid and cancel any rollback
+        ESP.restart();  // Restart the ESP to apply the update
+      } else {
+        Serial.println("Update not finished? Something went wrong!");  // Print an error if the update is not finished
+        esp_ota_mark_app_invalid_rollback_and_reboot();  // Mark the update as invalid and rollback
+      }
+    } else {
+      Update.printError(Serial);  // Print any errors that occur during the end of the update
+    }
+  } 
+  // If there is an error with the upload
+  else {
+    Update.printError(Serial);  // Print the error
+  }
+}
+
+
+
+// HTTP handler for root URL "/"
+void handleRoot() {
+  Serial.println("Received request...");
+  server.send(200, "text/plain", "success");
+}
+
+
+
+// HTTP handler for "/endpoint" URL
+void handleData() {
+  if (server.method() == HTTP_POST) {
+    String dat = server.arg("data");
+    Serial.println("Received data: " + dat);
+
+
+     
+
+      //conversion of string to unit8_t format
+      uint8_t buff[dat.length() + 1];
+      //copying the bytes
+      dat.getBytes(buff, sizeof(buff));
+      uint8_t len = dat.length() + 1;
+      uint8_t to = DEST_NODE_ID;
+
+      //Sending
+      uint8_t result = manager.sendtoWait(buff, len, to);
+      Serial.println("Message SENDING");
+      Serial.print("result=");
+      Serial.println(result);
+      
+      //printing the result status
+      if (result == RH_ROUTER_ERROR_NONE) {
+        Serial.println("Message forwarded successfully to the next hop.");
+      } else {
+        Serial.print("Message send failed, error code: ");
+        Serial.println(result);
+        handleSendError(result);
+        
+        // Handle send error and retry
+        result = manager.sendtoWait(buff, len, to);
+        Serial.println("Message SENDING");
+        Serial.print("result=");
+        Serial.println(result);
+        //printing the result status
+        if (result == RH_ROUTER_ERROR_NONE) {
+          
+          //result code = 0 
+          Serial.println("Message forwarded successfully to the next hop.");
+        } 
+        else {
+          Serial.print("Message send failed, error code: ");
+          Serial.println(result);
+          handleSendError(result); // Handle send error and retry
+        }
+      }
+    
+    //sending the success status code =200
+    server.send(200, "text/plain", "Data received by ESP32");
+  }
+}
+
+
+
+
+
+// HTTP handler for "/version" URL
+void handleVersionCheck() {
+  server.send(200, "text/plain", currentVersion); // Send current version as response
+}
+
+
 
 //==========================================================================================================
 //                                         F U N C T I O N S    F O R   C O R E - 0                         |
