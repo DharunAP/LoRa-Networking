@@ -30,9 +30,10 @@ const uint16_t RECV_TIMEOUT = 200;  // Milliseconds
 const uint16_t SEND_RETRY_DELAY = 100;  // Milliseconds
 
 // WiFi credentials
-const char* ssid = "POCO";  // Replace with your WiFi SSID
-const char* password = "hellobrooo";  // Replace with your WiFi password
-const char* serverUrl = "http://192.168.112.1:8000/user/loraSend";  // Replace with your server endpoint
+const char* ssid = "POCO";  // WiFi SSID
+const char* password = "hellobrooo";  //WiFi password
+const char* serverUrl = "http://192.168.112.1:8000/user/loraSend";  //server endpoint
+//Don't forget to replace with your Credentials
 
 // Global variables
 bool flg = false;
